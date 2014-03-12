@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Meet Sass</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/solarized-2.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style>
+			.reveal {
+				background-image: -webkit-gradient(
+					linear,
+					left top,
+					right bottom,
+					color-stop(0, #45A8FF),
+					color-stop(0.5, #9EE63A),
+					color-stop(1, #F4FC0D)
+				);
+				background-image: -o-linear-gradient(right bottom, #45A8FF 0%, #9EE63A 50%, #F4FC0D 100%);
+				background-image: -moz-linear-gradient(right bottom, #45A8FF 0%, #9EE63A 50%, #F4FC0D 100%);
+				background-image: -webkit-linear-gradient(right bottom, #45A8FF 0%, #9EE63A 50%, #F4FC0D 100%);
+				background-image: -ms-linear-gradient(right bottom, #45A8FF 0%, #9EE63A 50%, #F4FC0D 100%);
+				background-image: linear-gradient(to right bottom, #45A8FF 0%, #9EE63A 50%, #F4FC0D 100%);
+			}
+
+			.slides>section {
+				padding: 2em !important;
+				box-sizing:border-box;
+				background-color: rgba(0,0,0,.2);
+			}
+
+			.reveal blockquote {
+				font-size: smaller;
+				width: 82.6%;
+				text-align: left;
+				padding: 1em;
+			}
+
+			.reveal .slides a {
+				color: #fff;
+				text-decoration: underline;
+			}
+
+			.reveal .slides a:hover {
+				color: #333;
+			}
+
+			.reveal .slides li {
+				margin-bottom: .2em;
+			}
+
+			::selection {
+				color: #fff !important;
+			}
+
+			h1 {
+				margin-bottom: .4em !important;
+			}
+
+			#table-of-comments {
+				border-collapse:collapse;
+				width: 90%;
+				margin: 0 auto;
+			}
+			#table-of-comments td, #table-of-comments th {
+				width: 20%;
+				text-align: center;
+				font-size: 69%;
+				padding: .3em;
+			}
+
+			#table-of-comments th {
+				border-bottom: .06em solid #fff;
+			}
+		</style>
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+    <div class="slides">
+
+
+<section id="meet-sass" class="slide level1">
+<h1>Meet Sass</h1>
+<br> <br> by Hongru Hou</p>
+<p>2014.03.13 @ Baidu</p>
+</section>
+<section id="hi-im-sasssæs" class="slide level1">
+<h1>Hi, I'm Sass/sæs/</h1>
+<ul>
+<li>Born in Jun 30, 2006(first commit on Github)</li>
+<li>Coined by <strong>Hampton Catlin</strong>(invented Haml)</li>
+<li>Syntactically Awesome StyleSheets</li>
+<li>An extension of CSS3</li>
+<li>Two kinds of syntaxes: SCSS(Sassy CSS) &amp; Sass</li>
+</ul>
+</section>
+<section id="sass-vs.-scss" class="slide level1">
+<h1>Sass vs. SCSS</h1>
+<pre><code>// Sass syntax:
+#sidebar
+  width: 30%
+  background-color: #faa
+
+// SCSS syntax:
+#sidebar {
+  width: 30%;
+  background-color: #faa;
+}</code></pre>
+</section>
+<section id="choose-one" class="slide level1">
+<h1>Choose one</h1>
+<table>
+  <thead>
+    <tr>
+      <th>
+Sass
+</th>
+      <th>
+SCSS
+</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li>
+more concise
+</li>
+          <li>
+easier to read
+</li>
+          <li>
+doesn't complain about missing semi-colons
+</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+more expressive
+</li>
+          <li>
+easier to learn
+</li>
+          <li>
+could become the next version of CSS
+</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</section>
+<section id="how-to-install" class="slide level1">
+<h1>How to install</h1>
+<pre><code>$ gem install sass
+$ sass -v
+Sass 3.3.0 (Maptastic Maple)
+
+$ sass input.sass output.css
+$ scss input.scss output.css
+$ sass-convert style.scss style.sass
+$ sass-convert style.sass style.scss</code></pre>
+</section>
+<section id="variables" class="slide level1">
+<h1>Variables</h1>
+<pre><code>$width: 5em;
+
+#main {
+  width: $width;
+}
+
+#main {
+  width: 5em;
+}</code></pre>
+</section>
+<section id="default" class="slide level1">
+<h1>!default</h1>
+<pre><code>$content: &quot;First content&quot;;
+$content: &quot;Second content?&quot; !default;
+$new_content: &quot;First time reference&quot; !default;
+
+#main {
+  content: $content;
+  new-content: $new_content;
+}
+
+#main {
+  content: &quot;First content&quot;;
+  new-content: &quot;First time reference&quot;;
+}</code></pre>
+</section>
+<section id="interpolation" class="slide level1">
+<h1>Interpolation</h1>
+<pre><code>$name: foo;
+$attr: border;
+
+p.#{$name} {
+  #{$attr}-color: blue;
+}
+
+p.foo {
+  border-color: blue;
+}</code></pre>
+</section>
+<section id="nested-rules" class="slide level1">
+<h1>Nested rules</h1>
+<pre><code>header {
+  .logo {
+    color: green;
+  }
+  nav {
+    color: blue;
+  }
+}
+
+header .logo {
+  color: green;
+}
+header nav {
+  color: blue;
+}</code></pre>
+</section>
+<section id="parent-selector" class="slide level1">
+<h1>Parent selector</h1>
+<pre><code>// SCSS:
+.button {
+  &amp;.primary { background: orange; }
+  &amp;.secondary { background: blue; }
+}
+
+// Output:
+.button.primary { background: orange; }
+.button.secondary { background: blue; }</code></pre>
+</section>
+<section id="new-feature-in-3.3" class="slide level1">
+<h1>New feature in 3.3</h1>
+<pre><code>// SCSS:
+.button {
+  &amp;-primary { background: orange; }
+  &amp;-secondary { background: blue; }
+}
+
+// Output:
+.button-primary { background: orange; }
+.button-secondary { background: blue; }</code></pre>
+</section>
+<section id="nested-properties" class="slide level1">
+<h1>Nested properties</h1>
+<pre><code>// SCSS:
+.funky {
+  font: {
+    family: fantasy;
+    size: 30em;
+    weight: bold;
+  }
+}
+
+// Output:
+.funky {
+  font-family: fantasy;
+  font-size: 30em;
+  font-weight: bold;
+}</code></pre>
+</section>
+<section id="data-types" class="slide level1">
+<h1>Data types</h1>
+<ol type="1">
+<li>Number(e.g. 1, 2.3, 4px)</li>
+<li>String(e.g. how, 'are', &quot;you&quot;)</li>
+<li>Color(e.g. blue, #fff, rgba(0,0,0,.5))</li>
+<li>Boolean(true, false)</li>
+<li>List</li>
+<li>Map</li>
+<li>Null</li>
+</ol>
+</section>
+<section id="list" class="slide level1">
+<h1>List</h1>
+<blockquote>
+<p>Lists are just a series of other values, separated by either spaces or commas. In fact, individual values count as lists, too: they’re just lists with one item.</p>
+</blockquote>
+<pre><code>1px 2px, 5px 6px == (1px 2px) (5px 6px)
+
+nth(10px 20px 30px, 1) =&gt; 10px
+join(10px 20px, 30px 40px) =&gt; 10px 20px 30px 40px
+append(10px 20px, 30px) =&gt; 10px 20px 30px</code></pre>
+</section>
+<section id="maps" class="slide level1">
+<h1>Maps</h1>
+<blockquote>
+<p>Unlike lists, maps must always be surrounded by parentheses and must always be comma-separated.</p>
+</blockquote>
+<pre><code>$map: (key1: value1, key2: value2, key3: value3);
+map-get($map, $key)
+map-merge($map1, $map2)
+map-remove($map, $key)
+map-keys($map)
+map-values($map)
+map-has-key($map, $key)</code></pre>
+</section>
+<section id="maps-example" class="slide level1">
+<h1>Maps example</h1>
+<pre><code>$themes: (
+  mist: (
+    header: #DCFAC0,
+    text:   #00968B,
+    border: #85C79C
+  ),
+  spring: (
+    header: #F4FAC7,
+    text:   #C2454E,
+    border: #FFB158
+  )
+);
+
+h1 {
+  color: map-get(map-get($themes, spring), header);
+}</code></pre>
+</section>
+<section id="operations" class="slide level1">
+<h1>Operations</h1>
+<ul>
+<li>==, !=</li>
+<li>+, -, *, /, %</li>
+<li>&lt;, &gt;, &lt;=, &gt;=</li>
+<li>()</li>
+<li>Built-in functions</li>
+</ul>
+</section>
+<section id="rules" class="slide level1">
+<h1>@-rules</h1>
+<ul>
+<li><span class="citation" data-cites="import">@import</span></li>
+<li><span class="citation" data-cites="media">@media</span></li>
+<li><span class="citation" data-cites="extend">@extend</span></li>
+<li><span class="citation" data-cites="at-root">@at-root</span></li>
+<li><span class="citation" data-cites="debug">@debug</span></li>
+<li><span class="citation" data-cites="warn">@warn</span></li>
+</ul>
+</section>
+<section id="import" class="slide level1">
+<h1><span class="citation" data-cites="import">@import</span></h1>
+<blockquote>
+<p>All imported SCSS and Sass files will be merged together into a single CSS output file.</p>
+</blockquote>
+<blockquote>
+<p>Any variables or mixins defined in imported files can be used in the main file.</p>
+</blockquote>
+
+<pre><code>@import &quot;foo.css&quot;;
+@import &quot;foo&quot; screen;
+@import &quot;http://foo.com/bar&quot;;
+@import url(foo);
+</code></pre>
+
+</section>
+<section id="import-partials" class="slide level1">
+<h1>Import partials</h1>
+<p>If we have _font.scss, _color.scss and _grid.scss</p>
+<pre><code>// main.scss:
+@import font,
+        color,
+        grid;</code></pre>
+</section>
+<section id="extend" class="slide level1">
+<h1><span class="citation" data-cites="extend">@extend</span></h1>
+<pre><code>.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+.seriousError {
+  @extend .error;
+  border-width: 3px;
+}
+
+.error, .seriousError {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+.seriousError {
+  border-width: 3px;
+}</code></pre>
+</section>
+<section id="extend-placeholder" class="slide level1">
+<h1>Extend placeholder</h1>
+<pre><code>%center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.container {
+  @extend %center;
+}
+.image-cover {
+  @extend %center;
+}
+
+.container, .image-cover {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}</code></pre>
+</section>
+<section id="include-mixin" class="slide level1">
+<h1><span class="citation" data-cites="include">@include</span> mixin</h1>
+<pre><code>@mixin center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.container {
+  @include center;
+}
+.image-cover {
+  @include center;
+}
+
+.container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.image-cover {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}</code></pre>
+</section>
+<section id="mixin-or-placeholder" class="slide level1">
+<h1>Mixin or Placeholder</h1>
+<ul>
+<li>You cannot use variables in a placeholder</li>
+<li>Sass will duplicate the output of the mixin</li>
+</ul>
+</section>
+<section id="control-directives" class="slide level1">
+<h1>Control Directives</h1>
+<ul>
+<li><span class="citation" data-cites="if">@if</span> and <span class="citation" data-cites="else">@else</span></li>
+<li><span class="citation" data-cites="for">@for</span></li>
+<li><span class="citation" data-cites="while">@while</span></li>
+<li><span class="citation" data-cites="each">@each</span></li>
+</ul>
+</section>
+<section id="at-root" class="slide level1">
+<h1><span class="citation" data-cites="at-root">@at-root</span></h1>
+<pre><code>.badge {
+  @at-root {
+    .info { ... }
+    .header { ... }
+  }
+}
+
+.info { ... }
+.header { ... }</code></pre>
+</section>
+<section id="at-root-1" class="slide level1">
+<h1><span class="citation" data-cites="at-root">@at-root</span></h1>
+<pre><code>@media print {
+  .page {
+    width: 8in;
+    @at-root (without: media) {
+      color: red;
+    }
+  }
+}
+
+@media print {
+  .page {
+    width: 8in;
+  }
+}
+.page {
+  color: red;
+}</code></pre>
+</section>
+<section id="function-directives" class="slide level1">
+<h1>Function Directives</h1>
+<pre><code>$grid-width: 40px;
+$gutter-width: 10px;
+
+@function grid-width($n) {
+  @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar { width: grid-width(5); }
+
+#sidebar {
+  width: 240px; }</code></pre>
+</section>
+<section id="sass-source-maps" class="slide level1">
+<h1>Sass source maps</h1>
+<pre><code>$ scss --sourcemap sass/styles.scss public/styles.css
+
+// style.css:
+/*# sourceMappingURL=style.css.map */</code></pre>
+<p><a href="http://localhost/demo/test/">Demo</a></p>
+</section>
+<section id="output-style" class="slide level1">
+<h1>Output style</h1>
+<pre><code>$ sass --style NAME input.scss output.css</code></pre>
+</section>
+<section id="nested-default" class="slide level1">
+<h1>Nested (default)</h1>
+<pre><code>#main {
+  color: #fff;
+  background-color: #000; }
+  #main p {
+    width: 10em; }
+
+.huge {
+  font-size: 10em;
+  font-weight: bold;
+  text-decoration: underline; }</code></pre>
+</section>
+<section id="expanded" class="slide level1">
+<h1>Expanded</h1>
+<pre><code>#main {
+  color: #fff;
+  background-color: #000;
+}
+#main p {
+  width: 10em;
+}
+
+.huge {
+  font-size: 10em;
+  font-weight: bold;
+  text-decoration: underline;
+}</code></pre>
+</section>
+<section id="compact" class="slide level1">
+<h1>Compact</h1>
+<pre><code>#main { color: #fff; background-color: #000; }
+#main p { width: 10em; }
+
+.huge { font-size: 10em; font-weight: bold; text-decoration: underline; }</code></pre>
+</section>
+<section id="compressed" class="slide level1">
+<h1>Compressed</h1>
+<pre><code>#main{color:#fff;background-color:#000}#main p{width:10em}.huge{font-size:10em;font-weight:bold;text-decoration:underline}</code></pre>
+</section>
+<section id="comments" class="slide level1">
+<h1>Comments</h1>
+
+<table id="table-of-comments">
+  <thead>
+    <tr>
+      <th></th>
+      <th>
+nested
+</th>
+      <th>
+expanded
+</th>
+      <th>
+compact
+</th>
+      <th>
+compressed
+</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+// 1
+</td>
+      <td>
+  
+</td>
+      <td>
+  
+</td>
+      <td>
+  
+</td>
+      <td>
+  
+</td>
+    </tr>
+    <tr>
+      <td>
+/* 2 */
+</td>
+      <td>
+/* 2 */
+</td>
+      <td>
+/* 2 */
+</td>
+      <td>
+/* 2 */
+</td>
+      <td>
+  
+</td>
+    </tr>
+    <tr>
+      <td>
+//! 3
+</td>
+      <td>
+  
+</td>
+      <td>
+  
+</td>
+      <td>
+  
+</td>
+      <td>
+  
+</td>
+    </tr>
+    <tr>
+      <td>
+/*! 4 */
+</td>
+      <td>
+/*! 4 */
+</td>
+      <td>
+/*! 4 */
+</td>
+      <td>
+/*! 4 */
+</td>
+      <td>
+/*! 4 */
+</td>
+    </tr>
+  </tbody>
+</table>
+</li>
+</ol>
+</section>
+<section id="sass-style-guide" class="slide level1">
+<h1>Sass<br>Style Guide</h1>
+<ol type="1">
+<li>List <span class="citation" data-cites="extend">@extend</span>(s) first</li>
+<li>List regular styles next</li>
+<li>List <span class="citation" data-cites="include">@include</span>(s) next</li>
+<li>Nested selectors last</li>
+</ol>
+</section>
+<section id="resources" class="slide level1">
+<h1>Resources</h1>
+<ul>
+<li><a href="https://github.com/nex3/sass">Github repository of Sass</a></li>
+<li><a href="https://sublime.wbond.net/packages/Sass">Sass plugin for Sublime text</a></li>
+<li><a href="http://sassmeister.com/">Sass Meister</a></li>
+<li><a href="http://thesassway.com/">The Sass Way</a></li>
+<li><a href="http://css-tricks.com/sass-style-guide/">Sass style guide</a></li>
+<li><a href="http://sassconf.com/">Sass Conference</a></li>
+<li><a href="https://vimeo.com/sassconf">Videos of 2013 Sass Conf</a></li>
+<li><a href="https://medium.com/what-i-learned-building/b4daab987fb0">Getting started with CSS sourcemaps and in-browser Sass editing</a></li>
+</ul>
+</section>
+    </div>
+
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
